@@ -2,9 +2,19 @@
 
 int main(int argc, char **argv)
 {
+/*
+    Inicializar stacks
+    Parsear flags
+    Parsear números
+    Si el stack ya está ordenado
+        salir
+    Llamar a sort()
+    Liberar memoria
+    return
+*/
+
     t_stack_node    *a; //almacena puntero a stack a
     t_stack_node    *b; //almacena puntero a stack b
-
 
     //Comprobación de argc
     if (argc == 1 || argc == 2 && !argc[1][0])

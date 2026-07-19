@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include <limits.h>
 
+#define SIMPLE		1
+#define MEDIUM		2
+#define COMPLEX		3
+#define ADAPTIVE	4
 
 typedef struct s_node
 {
