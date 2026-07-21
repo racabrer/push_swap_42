@@ -22,8 +22,7 @@ int		parse_flags(int argc, char **argv, int *strategy, int *bench)
             return (-1);
         i++; // Avanza al siguiente argumento
     }
-    // devolver el índice donde empiezan los números
-    return (i);
+    return (i); // devolver el índice donde empiezan los números
 }    
 /*
 ** Analiza las flags.
@@ -96,7 +95,8 @@ int is_number(char *str)
     }
     return (1);
 }
-    /*
+
+/*
 ** Comprueba si una cadena representa un entero válido.
 **
 ** Devuelve:
@@ -144,7 +144,7 @@ long ft_atol(const char *str)
     }
     return (result * sign);
 }
-    /*
+/*
 ** Convierte una cadena a long.
 **
 ** Pseudocódigo:
@@ -169,7 +169,8 @@ int is_int_range(long value)
         return (1);
     else
         return (0);
-    /*
+}
+/*
 ** Comprueba si un long cabe en un int.
 **
 ** Devuelve:
@@ -188,7 +189,7 @@ int is_int_range(long value)
 **
 ** sí
 */
-}
+
 
 int has_duplicates(t_stack *a)
 {
@@ -231,21 +232,4 @@ int has_duplicates(t_stack *a)
 ** no hay duplicados
 */
 
-
-void	exit_error(t_stack *a, t_stack *b)
-{
-    /*
-** Libera memoria y termina el programa.
-**
-** Pseudocódigo:
-**
-** liberar stack a
-**
-** liberar stack b
-**
-** escribir "Error"
-**
-** exit(EXIT_FAILURE)
-*/
-}
 
