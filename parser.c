@@ -5,7 +5,7 @@ int		parse_flags(int argc, char **argv, int *strategy, int *bench)
     int i;
 
     i = 1;
-    while (argv[i] != NULL && argv[i][0] == '-' && argv[i][1] == '-')
+    while (i < argc && argv[i] != NULL && argv[i][0] == '-' && argv[i][1] == '-')
     {
         // identificar la flag y guardar la estrategia / activar bench
         if (ft_strcmp(argv[i], "--simple") == 0)
@@ -104,8 +104,30 @@ int		is_number(char *str)
 */
 }
 
-long	ft_atol(const char *str)
+long ft_atol(const char *str)
 {
+    int i;
+    int sign;
+    long result;
+   
+    i = 0;
+    sign = 1;
+    result = 0;
+    while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+        i++;
+    if (str[i] == '+' || str[i] == '-')
+    {
+        if (str[i] == '-')
+            sign = -1;
+        i++;
+    }
+    while(str[i] >= '0' && str[i] <= '9')
+    {
+        result = result * 10 + (str[i] - '0');
+        i++;
+    }
+    return (result * sign);
+}
     /*
 ** Convierte una cadena a long.
 **
@@ -123,10 +145,14 @@ long	ft_atol(const char *str)
 **
 ** devolver resultado
 */
-}
 
-int		is_int_range(long value)
+int is_int_range(long value)
 {
+   
+    if (value >= INT_MIN && value <= INT_MAX)
+        return (1);
+    else
+        return (0);
     /*
 ** Comprueba si un long cabe en un int.
 **
