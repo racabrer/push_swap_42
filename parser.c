@@ -190,8 +190,27 @@ int is_int_range(long value)
 */
 }
 
-int		has_duplicates(t_stack *a)
+int has_duplicates(t_stack *a)
 {
+    t_node *current;
+    t_node *check;
+   
+    if (a == NULL || a->top == NULL)
+        return (0);
+    current = a->top; // Empiezo en el nodo de arriba
+    while (current != NULL) // Bucle externo
+    {
+        check = current->next;
+        while(check != NULL)
+        {
+            if (current->value == check->value) //Comparo los valores
+                return (1);
+            check = check->next; //avanza el check al siguiente nodo
+        }
+        current = current->next; //avanza current al siguiente nodo
+    }
+    return (0);
+}
     /*
 ** Busca valores repetidos.
 **
@@ -211,7 +230,7 @@ int		has_duplicates(t_stack *a)
 **
 ** no hay duplicados
 */
-}
+
 
 void	exit_error(t_stack *a, t_stack *b)
 {
