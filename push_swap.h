@@ -24,48 +24,17 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
-/*
-typedef struct s_stack_node
-{
-    int                     nbr;          // valor del número
-    int                     index;        // rango/orden normalizado en la lista
-    int                     push_cost;    // coste total para mover este nodo (rotaciones A+B)
-    int                     cost_a;       // opcional: coste en stack A
-    int                     cost_b;       // opcional: coste en stack B
-    bool                    above_median; // si está por encima de la mitad del stack
-    bool                    cheapest;     // marca el nodo elegido como más barato
 
-    struct s_stack_node     *target_node; // nodo destino en la otra pila
-    struct s_stack_node     *next;        // siguiente en la lista (hacia abajo)
-    struct s_stack_node     *prev;        // anterior en la lista (hacia arriba)
-}   t_stack_node;
+//Errors
+void	free_stack(t_stack *stack);
+void	exit_error(t_stack *a, t_stack *b);
 
-
-typedef struct s_stack
-{
-    t_stack_node    *head;   // top de la pila
-    t_stack_node    *tail;   // fondo de la pila
-    int             size;    // número de elementos
-}   t_stack;
-*/
-
-//Handle errors
-
-
-//Stack initiation
-
-
-//Model initiation
-
-
-//Stack_utils
-
-
-//Commands
-
-
-//Algoritms
-
-
+//Parsing
+int		parse_flags(int argc, char **argv, int *strategy, int *bench);
+int		parse_numbers(int argc, char **argv, int first_number, t_stack *a);
+int     is_number(char *str);
+long    ft_atol(const char *str);
+int     is_int_range(long value);
+int     has_duplicates(t_stack *a);
 
 #endif
