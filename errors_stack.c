@@ -66,5 +66,5 @@ void	exit_error(t_stack *a, t_stack *b)
     ** escribir "Error\n" en stderr
     **
     ** terminar el programa con código de error
-    */
+    
 */

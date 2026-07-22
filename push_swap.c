@@ -1,36 +1,53 @@
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+#include <stdio.h>
+
+// int	main(int argc, char **argv)
+// {
+// 	char	**numbers;
+// 	int		i;
+
+// 	if (argc < 2)
+// 		return (1);
+
+// 	numbers = normalize_args(argc, argv, 1);
+// 	if (!numbers)
+// 		return (1);
+
+// 	i = 0;
+// 	while (numbers[i] != NULL)
+// 	{
+// 		printf("numbers[%d] = %s\n", i, numbers[i]);
+// 		i++;
+// 	}
+
+// 	free_split(numbers);
+// 	return (0);
+// }
+
+int	main(int argc, char **argv)
 {
-/*
-    Inicializar stacks
-    Parsear flags
-    Parsear números
-    Si el stack ya está ordenado
-        salir
-    Llamar a sort()
-    Liberar memoria
-    return
-*/
+	char	**numbers;
+	t_stack	a;
 
-    t_stack_node    *a; //almacena puntero a stack a
-    t_stack_node    *b; //almacena puntero a stack b
+	a.top = NULL;
+	a.bottom = NULL;
+	a.size = 0;
 
-    //Comprobación de argc
-    if (argc == 1 || argc == 2 && !argc[1][0])
-        return (1);
-    else if(argc == 2) //aquí compruebo si es igual a dos, porque significa que nos dan los números juntos, rollo "3 12 9" entonces son dos argumentos, el nombre del programa + los números 
-        argv = ft_split(argv[1], ' '); // si hay solo un argumento útil lo separo con split
-    init_stack_a(&a, argv + 1);
-    if (!stack_sorted_a)
-    {
-        if (!stack_sorted_a && (stack_len(a) == 2))
-            sa(&a, false);
-        else if (!stack_sorted_a && (stack_len(a) == 3))
-            sort_three(&a);
-        else
-            sort_stacks(&a, &b);
-    }
-    free_stack(&a);
-    return (0);
+	numbers = normalize_args(argc, argv, 1);
+	if (!numbers)
+		return (1);
+
+	if (!parse_numbers(numbers, &a))
+	{
+		write(2, "Error\n", 6);
+		free_split(numbers);
+		return (1);
+	}
+
+	printf("OK\n");
+
+	free_split(numbers);
+	free_stack(&a);
+	return (0);
 }

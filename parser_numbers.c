@@ -1,30 +1,54 @@
 #include "push_swap.h"
 
-int parse_numbers(int argc, char **argv, int first_number, t_stack *a) //construye el stack
-{  
-    int i;
-    long nbr;
-    t_node *new_node;
+// int parse_numbers(int argc, char **argv, int first_number, t_stack *a) //construye el stack
+// {  
+//     int i;
+//     long nbr;
+//     t_node *new_node;
   
-    i = first_number;
-    while(i < argc && argv[i] != NULL)
-    {
-        if (!ft_isnumber(argv[i]))
-            return (0);
-        nbr = ft_atol(argv[i]);
-        if (!is_int_range(nbr))
-            return (0);
-        new_node = create_node(nbr);
-        if(!new_node)
-            return(0);
-        add_node(a, new_node);
-        i++;
-    }
-    if (has_duplicates(a))
-        return (0);
-    return (1);
-}
+//     i = first_number;
+//     while(i < argc && argv[i] != NULL)
+//     {
+//         if (!is_number(argv[i]))
+//             return (0);
+//         nbr = ft_atol(argv[i]);
+//         if (!is_int_range(nbr))
+//             return (0);
+//         new_node = create_node(nbr);
+//         if(!new_node)
+//             return(0);
+//         add_node(a, new_node);
+//         i++;
+//     }
+//     if (has_duplicates(a))
+//         return (0);
+//     return (1);
+// }
 
+int	parse_numbers(char **argv, t_stack *a)
+{
+	int		i;
+	long	nbr;
+	t_node	*new_node;
+
+	i = 0;
+	while (argv[i] != NULL)
+	{
+		if (!is_number(argv[i]))
+			return (0);
+		nbr = ft_atol(argv[i]);
+		if (!is_int_range(nbr))
+			return (0);
+		new_node = create_node((int)nbr);
+		if (!new_node)
+			return (0);
+		add_node(a, new_node);
+		i++;
+	}
+	if (has_duplicates(a))
+		return (0);
+	return (1);
+}
 
 int is_number(char *str)
 {
@@ -44,31 +68,6 @@ int is_number(char *str)
         i++;
     }
     return (1);
-}
-
-long ft_atol(const char *str)
-{
-    int i;
-    int sign;
-    long result;
-   
-    i = 0;
-    sign = 1;
-    result = 0;
-    while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-        i++;
-    if (str[i] == '+' || str[i] == '-')
-    {
-        if (str[i] == '-')
-            sign = -1;
-        i++;
-    }
-    while(str[i] >= '0' && str[i] <= '9')
-    {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-    return (result * sign);
 }
 
 int is_int_range(long value)
@@ -101,3 +100,4 @@ int has_duplicates(t_stack *a)
     }
     return (0);
 }
+
