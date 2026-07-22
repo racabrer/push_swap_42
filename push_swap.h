@@ -72,11 +72,18 @@ char		**ft_split(char const *s, char c);
 t_node	*create_node(int value);
 void	add_node(t_stack *stack, t_node *new_node);
 
-
 /* Errors / Stack */
 void	free_stack(t_stack *stack);
 void	exit_error(t_stack *a, t_stack *b);
 
+/* Swap */
+void	swap_node(t_stack *stack);
+void	sa(t_stack *a, bool checker);
+void	sb(t_stack *b, bool checker);
 
+/* Push */
+void	push(t_stack *dest, t_stack *src);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
 
 #endif
