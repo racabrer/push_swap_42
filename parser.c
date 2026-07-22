@@ -24,56 +24,66 @@ int		parse_flags(int argc, char **argv, int *strategy, int *bench)
     }
     return (i); // devolver el índice donde empiezan los números
 }    
-/*
-** Analiza las flags.
-**
-** Devuelve:
-**  - índice del primer número.
-**  - -1 si hay error.
-**
-** Pseudocódigo:
-**
-** recorrer argv desde argv[1]
-**
-** mientras el argumento empiece por "--"
-**
-**     identificar la flag
-**
-**     guardar la estrategia
-**
-**     activar bench si aparece
-**
-** devolver el índice donde empiezan los números
-*/
 
+int parse_numbers(int argc, char **argv, int first_number, t_stack *a) //construye el stack
+{  
+    int i;
+    long nbr;
+    t_node *new_node;
+  
+    i = first_number;
+    while(i < argc && argv[i] != NULL)
+    {
+        if (!ft_isnumber(argv[i]))
+            return (0);
+        nbr = ft_atol(argv[i]);
+        if (!is_int_range(nbr))
+            return (0);
+        new_node = create_node(nbr);
+        if(!new_node)
+            return(0);
+        add_node(a, new_node);
+        i++;
+    }
+    if (has_duplicates(a))
+        return (0);
+    return (1);
+}
 
-int		parse_numbers(int argc, char **argv, int first_number, t_stack *a)
+t_node *create_node(int value)
 {
-/*
-** Construye el stack.
-**
-** Devuelve:
-**  1 -> correcto
-**  0 -> error
-**
-** Pseudocódigo:
-**
-** recorrer todos los números
-**
-**     comprobar formato
-**
-**     convertir a long
-**
-**     comprobar rango int
-**
-**     crear nodo
-**
-**     añadir nodo al stack
-**
-** comprobar duplicados
-**
-** devolver éxito
-*/
+   
+    t_node *nodo;
+   
+    nodo = malloc(sizeof(t_node));
+    if (!nodo)
+        return (NULL);
+    nodo = nodo->value;
+    index = 0;
+    nodo->next = NULL;
+    nodo->prev = NULL;
+    return (nodo);
+}
+
+void add_node(t_stack *stack, t_node *new_node) // Añade un nodo al final del stack
+{
+    if (!stack)
+        return;
+    if (stack->top == NULL) //Stack vacío
+    {
+        stack->top = new_node;
+        stack->bottom = new_node;
+        new_node->next = NULL;
+        new_node->prev = NULL;
+    }
+    else //Ya hay nodos
+    {
+        stack->bottom->next = new_node; //el antiguo último apunta al nuevo
+        new_node->prev = stack->bottom; //El nuevo nodo apunta hacia atrás al antiguo último
+        stack->bottom = new_node; //bottom actualiza su posición
+        new_node->next = NULL; //Nuevo último apunta a NULL
+    }
+    stack->size++;
 }
 
 int is_number(char *str)
@@ -95,30 +105,6 @@ int is_number(char *str)
     }
     return (1);
 }
-
-/*
-** Comprueba si una cadena representa un entero válido.
-**
-** Devuelve:
-**  1 -> válido
-**  0 -> inválido
-**
-** Pseudocódigo:
-**
-** comprobar cadena vacía
-**
-** comprobar signo
-**
-** comprobar que existen dígitos
-**
-** recorrer todos los caracteres
-**
-**     si alguno no es un dígito
-**
-**         inválido
-**
-** válido
-*/
 
 long ft_atol(const char *str)
 {
@@ -144,23 +130,6 @@ long ft_atol(const char *str)
     }
     return (result * sign);
 }
-/*
-** Convierte una cadena a long.
-**
-** Pseudocódigo:
-**
-** leer signo
-**
-** resultado = 0
-**
-** mientras haya dígitos
-**
-**     resultado = resultado * 10 + dígito
-**
-** aplicar signo
-**
-** devolver resultado
-*/
 
 int is_int_range(long value)
 {
@@ -170,26 +139,6 @@ int is_int_range(long value)
     else
         return (0);
 }
-/*
-** Comprueba si un long cabe en un int.
-**
-** Devuelve:
-**  1 -> sí
-**  0 -> no
-**
-** Pseudocódigo:
-**
-** si value < INT_MIN
-**
-**     no
-**
-** si value > INT_MAX
-**
-**     no
-**
-** sí
-*/
-
 
 int has_duplicates(t_stack *a)
 {
@@ -212,24 +161,190 @@ int has_duplicates(t_stack *a)
     }
     return (0);
 }
-    /*
-** Busca valores repetidos.
-**
-** Devuelve:
-**  1 -> hay duplicados
-**  0 -> no hay duplicados
-**
-** Pseudocódigo:
-**
-** para cada nodo
-**
-**     recorrer los siguientes
-**
-**         si coinciden
-**
-**             duplicado
-**
-** no hay duplicados
+
+// EXPLICACIONES
+
+/*
+int		parse_flags(int argc, char **argv, int *strategy, int *bench)
+
+    ** Analiza las flags.
+    **
+    ** Devuelve:
+    **  - índice del primer número.
+    **  - -1 si hay error.
+    **
+    ** Pseudocódigo:
+    **
+    ** recorrer argv desde argv[1]
+    **
+    ** mientras el argumento empiece por "--"
+    **
+    **     identificar la flag
+    **
+    **     guardar la estrategia
+    **
+    **     activar bench si aparece
+    **
+    ** devolver el índice donde empiezan los números
+
+int parse_numbers(int argc, char **argv, int first_number, t_stack *a) -> construye el stack
+
+    ** Construye el stack.
+    **
+    ** Devuelve:
+    **  1 -> correcto
+    **  0 -> error
+    **
+    ** Pseudocódigo:
+    **
+    ** recorrer todos los números
+    **
+    **     comprobar formato
+    **
+    **     convertir a long
+    **
+    **     comprobar rango int
+    **
+    **     crear nodo
+    **
+    **     añadir nodo al stack
+    **
+    ** comprobar duplicados
+    **
+    ** devolver éxito
+
+t_node *create_node(int value) 
+
+    ** Crea un nuevo nodo del stack.
+    **
+    ** Devuelve:
+    **  puntero al nodo creado.
+    **  NULL -> si falla malloc.
+    **
+    ** Pseudocódigo:
+    **
+    ** reservar memoria para un nodo
+    **
+    ** si malloc falla
+    **
+    **     devolver NULL
+    **
+    ** guardar value
+    **
+    ** inicializar index
+    **
+    ** poner next a NULL
+    **
+    ** poner prev a NULL
+    **
+    ** devolver el nodo
+
+void add_node(t_stack *stack, t_node *new_node) -> Añade un nodo al final del stack
+
+    ** Añade un nodo al final del stack.
+    **
+    ** Pseudocódigo:
+    **
+    ** si el stack está vacío
+    **
+    **     top = nuevo nodo
+    **
+    **     bottom = nuevo nodo
+    **
+    ** si no
+    **
+    **     conectar el antiguo bottom con el nuevo nodo
+    **
+    **     conectar el nuevo nodo con el antiguo bottom
+    **
+    **     actualizar bottom
+    **
+    ** aumentar size
+
+int is_number(char *str)
+
+    ** Comprueba si una cadena representa un entero válido.
+    **
+    ** Devuelve:
+    **  1 -> válido
+    **  0 -> inválido
+    **
+    ** Pseudocódigo:
+    **
+    ** comprobar cadena vacía
+    **
+    ** comprobar signo
+    **
+    ** comprobar que existen dígitos
+    **
+    ** recorrer todos los caracteres
+    **
+    **     si alguno no es un dígito
+    **
+    **         inválido
+    **
+    ** válido
+
+long ft_atol(const char *str)
+
+    ** Convierte una cadena a long.
+    **
+    ** Pseudocódigo:
+    **
+    ** leer signo
+    **
+    ** resultado = 0
+    **
+    ** mientras haya dígitos
+    **
+    **     resultado = resultado * 10 + dígito
+    **
+    ** aplicar signo
+    **
+    ** devolver resultado
+
+int is_int_range(long value)
+
+    ** Comprueba si un long cabe en un int.
+    **
+    ** Devuelve:
+    **  1 -> sí
+    **  0 -> no
+    **
+    ** Pseudocódigo:
+    **
+    ** si value < INT_MIN
+    **
+    **     no
+    **
+    ** si value > INT_MAX
+    **
+    **     no
+    **
+    ** sí
+
+int has_duplicates(t_stack *a)
+
+    ** Busca valores repetidos.
+    **
+    ** Devuelve:
+    **  1 -> hay duplicados
+    **  0 -> no hay duplicados
+    **
+    ** Pseudocódigo:
+    **
+    ** para cada nodo
+    **
+    **     recorrer los siguientes
+    **
+    **         si coinciden
+    **
+    **             duplicado
+    **
+    ** no hay duplicados
 */
+
+
+
 
 

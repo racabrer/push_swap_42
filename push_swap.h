@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <limits.h>
 
+#define NONE        0
 #define SIMPLE		1
 #define MEDIUM		2
 #define COMPLEX		3
