@@ -30,8 +30,6 @@ typedef struct s_stack
 }	t_stack;
 
 
-
-
 /* Parser flags */
 int		flag_duplicates(char *flag, int strategy, int bench);
 int		set_strategy(char *flag, int *strategy);
