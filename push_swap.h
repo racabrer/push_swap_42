@@ -60,10 +60,6 @@ char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 
 /* Split */
-static int	ft_word_len(char const *str, char c);
-static int	ft_count_words(char const *s, char c);
-static void	*free_all(char **tab, int i);
-static int	ft_fill_str(char **str, char const *s, char c);
 char		**ft_split(char const *s, char c);
 
 /* Nodes */
@@ -73,6 +69,7 @@ void	add_node(t_stack *stack, t_node *new_node);
 /* Errors / Stack */
 void	free_stack(t_stack *stack);
 void	exit_error(t_stack *a, t_stack *b);
+void	error(void);
 
 /* Swap */
 void	swap_node(t_stack *stack);

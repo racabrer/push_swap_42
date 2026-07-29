@@ -27,7 +27,11 @@ void	exit_error(t_stack *a, t_stack *b)
     exit(1);
 }
 
-
+void    error(void) //Añado esto para que devuelva error
+{
+    write(2, "Error\n", 6);
+    exit(EXIT_FAILURE);
+}
 /*
 void	free_stack(t_stack *stack)
 
