@@ -62,6 +62,12 @@ size_t	ft_strlen(const char *s);
 /* Split */
 char		**ft_split(char const *s, char c);
 
+/* Little Numbers */
+void	sort_two(t_stack **a);
+void	sort_three(t_stack **a);
+void	sort_four(t_stack **a, t_stack **b);
+void	sort_five(t_stack **a, t_stack **b);
+
 /* Nodes */
 t_node	*create_node(int value);
 void	add_node(t_stack *stack, t_node *new_node);
