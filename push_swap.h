@@ -72,6 +72,10 @@ void	sort_five(t_stack **a, t_stack **b);
 t_node	*create_node(int value);
 void	add_node(t_stack *stack, t_node *new_node);
 
+/* Indexes */
+void	assign_indexes(t_stack *stack);
+int		get_index(t_stack *stack, t_node *node);
+
 /* Errors / Stack */
 void	free_stack(t_stack *stack);
 void	exit_error(t_stack *a, t_stack *b);

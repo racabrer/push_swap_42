@@ -16,46 +16,19 @@ void	assign_indexes(t_stack *stack) // aquí stack es un puntero a una estructur
     }
 }
 
-int	get_index(t_stack *stack, t_node *node) /*Esta función está maluca*/
+int	get_index(t_stack *stack, t_node *node) 
 {
     t_node *compare;
     int     counter;
 
-    compare = stack->top;
-    counter = 0;
-    while (compare != NULL)
+    compare = stack->top; //Empiezo a recorrer la pila desde el principio
+    counter = 0; // Contador empieza en cero porque no he comparado ningún nº menor
+    while (compare != NULL) //Recorro todos los nodos
     {
-        if (compare > node->value->next)
-            counter++;
-        else 
-            compare = node->value->next;
-        compare = compare->next;
+        if (compare->value < node->value) //voy comparando el valor de los nodos
+            counter++; // si encuentra nodos menores, aumenta el contador
+        compare = compare->next; // avanza al siguiente 
     }
-    return (counter);
+    return (counter); //devuelve el resultado del contador. 
 }
-/*
 
-La pregunta correcta es:
-
-"¿El nodo que estoy recorriendo (compare) es menor que el nodo cuyo índice estoy calculando (node)?"
-
-Es decir, compare no se compara con compare->next.
-
-compare se compara con node.
-
-Porque node es el protagonista.
-
-compare solo va inspeccionando toda la lista.
-
-get_index()
-
-    comparar = top
-
-    contador = 0
-
-    mientras comparar exista
-
-        comparar valores
-
-    devolver contador
-*/
