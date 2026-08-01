@@ -35,3 +35,44 @@ void add_node(t_stack *stack, t_node *new_node) // Añade un nodo al final del s
     }
     stack->size++;
 }
+
+t_node	*find_min_node(t_stack *stack)
+{
+    t_node  *compare;
+    t_node  *min;
+
+    if (stack == NULL || stack->top == NULL)
+        return (NULL);
+    min = stack->top;
+    compare = stack->top->next;
+    while (compare != NULL) 
+    {
+        if (compare->value < min->value)
+            min = compare;
+        compare = compare->next;
+    }
+    return (min);
+}
+
+
+int	get_position(t_stack *stack, t_node *node)
+{
+
+}
+
+/*
+Recorre la pila desde top.
+Cuenta cuántos nodos hay hasta llegar a node.
+Devuelve esa posición (empezando en 0).
+*/
+
+void	move_to_top(t_stack *stack, t_node *node)
+{
+
+}
+
+/*
+Lleva ese nodo hasta top.
+Decide si usar ra o rra según la posición del nodo.
+Modifica la pila.
+*/
