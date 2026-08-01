@@ -57,8 +57,32 @@ t_node	*find_min_node(t_stack *stack)
 
 int	get_position(t_stack *stack, t_node *node)
 {
+    t_node *position;
+    int     counter;
 
+    position = stack->top;
+    counter = 0;
+    while(position != NULL)
+    {
+        if (position == node)
+            return (counter);
+        position = position->next;
+        counter++;
+    }
+    return (-1);
 }
+
+/*
+Creo que te va a salir casi sin ayuda porque es muy parecida a get_index(),
+pero con una diferencia importante:
+no comparas valores,
+sino que buscas cuándo el nodo que recorres (compare)
+es exactamente el mismo nodo que te han pasado (node).
+
+Ese pequeño cambio te ayudará a entender la diferencia 
+entre comparar datos (value) y comparar punteros (compare == node), 
+que es un concepto fundamental en C y en listas enlazadas.
+*/
 
 /*
 Recorre la pila desde top.
