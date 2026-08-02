@@ -65,6 +65,8 @@ char		**ft_split(char const *s, char c);
 /* Nodes */
 t_node	*create_node(int value);
 void	add_node(t_stack *stack, t_node *new_node);
+t_node	*find_min_node(t_stack *stack);
+int		get_position(t_stack *stack, t_node *node);
 
 /* Little Numbers */
 void	sort_two(t_stack *a);
@@ -80,6 +82,20 @@ int		get_index(t_stack *stack, t_node *node);
 void	free_stack(t_stack *stack);
 void	exit_error(t_stack *a, t_stack *b);
 void	error(void);
+
+/* Rotate */
+void	rotate(t_stack *stack);
+void	ra(t_stack *stack);
+void	rb(t_stack *stack);
+void	rr(t_stack *a, t_stack *b);
+
+
+/* Reverse Rotate*/
+void	reverse_rotate(t_stack *stack);
+void	rra(t_stack *stack);
+void	rrb(t_stack *stack);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
+
 
 /* Swap */
 void	swap_node(t_stack *stack);

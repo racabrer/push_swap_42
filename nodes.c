@@ -60,6 +60,8 @@ int	get_position(t_stack *stack, t_node *node)
     t_node *position;
     int     counter;
 
+    if (stack == NULL ||  node == NULL || stack->top == NULL)
+        return (-1);
     position = stack->top;
     counter = 0;
     while(position != NULL)
@@ -73,18 +75,6 @@ int	get_position(t_stack *stack, t_node *node)
 }
 
 /*
-Creo que te va a salir casi sin ayuda porque es muy parecida a get_index(),
-pero con una diferencia importante:
-no comparas valores,
-sino que buscas cuándo el nodo que recorres (compare)
-es exactamente el mismo nodo que te han pasado (node).
-
-Ese pequeño cambio te ayudará a entender la diferencia 
-entre comparar datos (value) y comparar punteros (compare == node), 
-que es un concepto fundamental en C y en listas enlazadas.
-*/
-
-/*
 Recorre la pila desde top.
 Cuenta cuántos nodos hay hasta llegar a node.
 Devuelve esa posición (empezando en 0).
@@ -92,7 +82,23 @@ Devuelve esa posición (empezando en 0).
 
 void	move_to_top(t_stack *stack, t_node *node)
 {
+    int position;
+    int half;
 
+    if (stack == NULL || node == NULL || stack->top == NULL)
+        return ;
+    position = get_position(stack, node);
+    half = stack->size / 2;
+    if (position <= half)
+    {
+        while (node != stack->top)
+            ra(stack);
+    }
+    else
+    {
+        while (node != stack->top)
+            rra(stack);
+    }
 }
 
 /*
