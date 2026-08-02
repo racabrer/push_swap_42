@@ -65,7 +65,11 @@ char		**ft_split(char const *s, char c);
 /* Nodes */
 t_node	*create_node(int value);
 void	add_node(t_stack *stack, t_node *new_node);
+
+/* Nodes Utils */
 t_node	*find_min_node(t_stack *stack);
+t_node	*find_max_node(t_stack *stack);
+void	move_to_top(t_stack *stack, t_node *node);
 int		get_position(t_stack *stack, t_node *node);
 
 /* Little Numbers */
@@ -90,7 +94,7 @@ void	rb(t_stack *stack);
 void	rr(t_stack *a, t_stack *b);
 
 
-/* Reverse Rotate*/
+/* Reverse Rotate */
 void	reverse_rotate(t_stack *stack);
 void	rra(t_stack *stack);
 void	rrb(t_stack *stack);

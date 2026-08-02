@@ -8,7 +8,10 @@
 
 void	sort_two(t_stack *a)
 {
-
+    if (!a || a->size != 2)
+        return ;
+    if (a->top->value > a->top->next->value)
+        sa(a);
 }
 
 /*
@@ -19,7 +22,19 @@ void	sort_two(t_stack *a)
 
 void	sort_three(t_stack *a)
 {
+    t_node  *max;
+    int     position;
 
+    if (!a || a->size != 3)
+        return ;
+    max = find_max_node(a);
+    position = get_position(a, max);
+    if (position == 0)
+        ra(a);
+    else if (position == 1)
+        rra(a);
+    if (a->top->value > a->top->next->value)
+        sa(a);
 }
 
 /*
