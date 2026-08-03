@@ -1,116 +1,124 @@
-#include "push_swap.h"
+// #include "push_swap.h"
+// #include <stdio.h>
 
-#include <stdio.h>
-
-// int	main(int argc, char **argv)
+// static void	init_stack(t_stack *stack)
 // {
-// 	char	**numbers;
-// 	int		i;
+// 	stack->top = NULL;
+// 	stack->bottom = NULL;
+// 	stack->size = 0;
+// }
 
-// 	if (argc < 2)
-// 		return (1);
+// static void	print_stack(t_stack *stack)
+// {
+// 	t_node	*tmp;
 
-// 	numbers = normalize_args(argc, argv, 1);
-// 	if (!numbers)
-// 		return (1);
+// 	tmp = stack->top;
+// 	while (tmp)
+// 	{
+// 		printf("%d ", tmp->value);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("\n");
+// }
+
+// static int	is_sorted(t_stack *stack)
+// {
+// 	t_node	*tmp;
+
+// 	tmp = stack->top;
+// 	while (tmp && tmp->next)
+// 	{
+// 		if (tmp->value > tmp->next->value)
+// 			return (0);
+// 		tmp = tmp->next;
+// 	}
+// 	return (1);
+// }
+
+// static void	create_stack(t_stack *stack, int *values, int size)
+// {
+// 	int	i;
 
 // 	i = 0;
-// 	while (numbers[i] != NULL)
+// 	while (i < size)
 // 	{
-// 		printf("numbers[%d] = %s\n", i, numbers[i]);
+// 		add_node(stack, create_node(values[i]));
 // 		i++;
 // 	}
-
-// 	free_split(numbers);
-// 	return (0);
 // }
 
-// int	main(int argc, char **argv)
+// static void	run_test(char *name, int *values, int size)
 // {
-// 	char	**numbers;
 // 	t_stack	a;
+// 	t_stack	b;
 
-// 	a.top = NULL;
-// 	a.bottom = NULL;
-// 	a.size = 0;
+// 	init_stack(&a);
+// 	init_stack(&b);
 
-// 	numbers = normalize_args(argc, argv, 1);
-// 	if (!numbers)
-// 		return (1);
+// 	create_stack(&a, values, size);
 
-// 	if (!parse_numbers(numbers, &a))
-// 	{
-// 		write(2, "Error\n", 6);
-// 		free_split(numbers);
-// 		return (1);
-// 	}
+// 	printf("\n===== %s =====\n", name);
+// 	printf("Antes: ");
+// 	print_stack(&a);
 
-// 	printf("OK\n");
+// 	if (size == 2)
+// 		sort_two(&a);
+// 	else if (size == 3)
+// 		sort_three(&a);
+// 	else if (size == 4)
+// 		sort_four(&a, &b);
+// 	else if (size == 5)
+// 		sort_five(&a, &b);
 
-// 	free_split(numbers);
+// 	printf("Después: ");
+// 	print_stack(&a);
+
+// 	if (is_sorted(&a))
+// 		printf("OK\n");
+// 	else
+// 		printf("ERROR\n");
+
 // 	free_stack(&a);
-// 	return (0);
+// 	free_stack(&b);
 // }
 
+// int	main(void)
+// {
+// 	int	two_1[] = {1, 2};
+// 	int	two_2[] = {2, 1};
 
-#include "push_swap.h"
-#include <stdio.h>
+// 	int	three_1[] = {1, 2, 3};
+// 	int	three_2[] = {1, 3, 2};
+// 	int	three_3[] = {2, 1, 3};
+// 	int	three_4[] = {2, 3, 1};
+// 	int	three_5[] = {3, 1, 2};
+// 	int	three_6[] = {3, 2, 1};
 
-static void	print_stack(char *name, t_stack *stack)
-{
-	t_node	*current;
+// 	int	four_1[] = {4, 3, 2, 1};
+// 	int	four_2[] = {2, 4, 1, 3};
 
-	printf("%s: ", name);
-	current = stack->top;
-	while (current)
-	{
-		printf("%d ", current->value);
-		current = current->next;
-	}
-	printf("\n");
-}
+// 	int	five_1[] = {1, 2, 3, 4, 5};
+// 	int	five_2[] = {5, 4, 3, 2, 1};
+// 	int	five_3[] = {2, 1, 5, 3, 4};
+// 	int	five_4[] = {4, 2, 5, 1, 3};
 
-int	main(void)
-{
-	t_stack	a;
-	t_stack	b;
+// 	run_test("2 ordenados", two_1, 2);
+// 	run_test("2 invertidos", two_2, 2);
 
-	a.top = NULL;
-	a.bottom = NULL;
-	a.size = 0;
+// 	run_test("3 caso 1", three_1, 3);
+// 	run_test("3 caso 2", three_2, 3);
+// 	run_test("3 caso 3", three_3, 3);
+// 	run_test("3 caso 4", three_4, 3);
+// 	run_test("3 caso 5", three_5, 3);
+// 	run_test("3 invertidos", three_6, 3);
 
-	b.top = NULL;
-	b.bottom = NULL;
-	b.size = 0;
+// 	run_test("4 caso 1", four_1, 4);
+// 	run_test("4 caso 2", four_2, 4);
 
-	// Creamos stack A: 1 -> 2 -> 3
-	add_node(&a, create_node(1));
-	add_node(&a, create_node(2));
-	add_node(&a, create_node(3));
+// 	run_test("5 ordenados", five_1, 5);
+// 	run_test("5 invertidos", five_2, 5);
+// 	run_test("5 mezcla 1", five_3, 5);
+// 	run_test("5 mezcla 2", five_4, 5);
 
-	printf("Estado inicial:\n");
-	print_stack("A", &a);
-	print_stack("B", &b);
-
-	// Probamos swap A
-	printf("\nDespués de sa:\n");
-	sa(&a, false);
-	print_stack("A", &a);
-
-	// Probamos pb
-	printf("\nDespués de pb:\n");
-	pb(&a, &b);
-	print_stack("A", &a);
-	print_stack("B", &b);
-
-	// Probamos pa
-	printf("\nDespués de pa:\n");
-	pa(&a, &b);
-	print_stack("A", &a);
-	print_stack("B", &b);
-
-	free_stack(&a);
-	free_stack(&b);
-
-	return (0);
-}
+// 	return (0);
+// }

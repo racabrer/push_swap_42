@@ -78,9 +78,9 @@ void	sort_four(t_stack *a, t_stack *b)
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-    if (!a || a->size != 5 || !b)
-        return ;
-    push_smallest_to_b(a, b);
-    sort_four(a);
-    pa(a, b);
+	if (!a || !b || a->size != 5)
+		return ;
+	push_smallest_to_b(a, b);
+	sort_four(a, b);
+	pa(a, b);
 }

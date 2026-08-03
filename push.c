@@ -4,7 +4,7 @@ void	push(t_stack *dest, t_stack *src)
 {
 	t_node	*moved_node;
 
-	if (!dest || !src || src->top)
+	if (!dest || !src || !src->top)
 		return ;
 	moved_node = src->top;
 	src->top = moved_node->next;

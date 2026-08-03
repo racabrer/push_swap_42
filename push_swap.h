@@ -103,8 +103,9 @@ void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 /* Swap */
 void	swap_node(t_stack *stack);
-void	sa(t_stack *a, bool checker);
-void	sb(t_stack *b, bool checker);
+void	sa(t_stack *a);
+void	sb(t_stack *b);
+void	ss(t_stack *a, t_stack *b);
 
 /* Push */
 void	push(t_stack *dest, t_stack *src);
