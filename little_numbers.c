@@ -45,7 +45,13 @@ void	sort_three(t_stack *a)
 
 static void	push_smallest_to_b(t_stack *a, t_stack *b)
 {
+    t_node *min;
 
+    if (!a ||  a->top == NULL || !b )
+        return ;
+    min = find_min_node(a);
+    move_to_top(a, min);
+    pb(a, b);
 }
 
 /*
@@ -54,9 +60,13 @@ static void	push_smallest_to_b(t_stack *a, t_stack *b)
 ** 3 elements to sort_three, and pushes the minimum element back to 'a'.
 */
 
-void	sort_four(t_stack **a, t_stack **b)
+void	sort_four(t_stack *a, t_stack *b)
 {
-
+    if (!a || a->size != 4 || !b)
+        return ;
+    push_smallest_to_b(a, b);
+    sort_three(a);
+    pa(a, b);
 }
 
 /*
@@ -68,5 +78,9 @@ void	sort_four(t_stack **a, t_stack **b)
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-
+    if (!a || a->size != 5 || !b)
+        return ;
+    push_smallest_to_b(a, b);
+    sort_four(a);
+    pa(a, b);
 }
