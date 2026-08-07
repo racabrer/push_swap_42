@@ -29,7 +29,6 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
-
 /* Parser flags */
 int		flag_duplicates(char *flag, int strategy, int bench);
 int		set_strategy(char *flag, int *strategy);
@@ -55,6 +54,9 @@ void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *s, int c, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strdup(const char *s);
+
+/* Disorder */
+double compute_disorder(t_stack *stack);
 
 /* Libft-utils */
 size_t	ft_strlen(const char *s);
