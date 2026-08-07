@@ -14,7 +14,8 @@ SRC = \
 	reverse_rotate.c \
 	utils.c \
 	libft_utils.c \
-	errors.c
+	errors.c \
+	compute_disorder.c
 
 OBJ = $(SRC:.c=.o)
 
