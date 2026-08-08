@@ -87,3 +87,12 @@ Recorre la pila desde top.
 Cuenta cuántos nodos hay hasta llegar a node.
 Devuelve esa posición (empezando en 0).
 */
+int	get_reverse_position(t_stack *stack, t_node *node)
+{
+	int	position;
+
+	position = get_position(stack, node);
+	if (position < 0)
+		return (-1);
+	return (stack->size - position);
+}
