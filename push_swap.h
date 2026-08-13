@@ -80,6 +80,21 @@ void	sort_three(t_stack *a);
 void	sort_four(t_stack *a, t_stack *b);
 void	sort_five(t_stack *a, t_stack *b);
 
+/* Insertion sort */
+void	insertion_sort(t_stack *a, t_stack *b);
+t_node	*find_target(t_stack *a, int index);
+int		get_insert_cost(t_stack *a, t_stack *b, t_node *node);
+t_node	*find_cheapest(t_stack *a, t_stack *b);
+void	move_node(t_stack *a, t_stack *b, t_node *node);
+
+/* Common moves */
+void	push_to_b(t_stack *a, t_stack *b);
+void	push_to_a(t_stack *a, t_stack *b);
+void	rotate_both(t_stack *a, t_stack *b,
+			int *a_moves, int *b_moves);
+void	reverse_rotate_both(t_stack *a, t_stack *b,
+			int *a_moves, int *b_moves);
+
 /* Indexes */
 void	assign_indexes(t_stack *stack);
 int		get_index(t_stack *stack, t_node *node);

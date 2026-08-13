@@ -15,7 +15,13 @@ SRC = \
 	utils.c \
 	libft_utils.c \
 	errors.c \
-	compute_disorder.c
+	compute_disorder.c \
+	common_moves.c \
+	insertion.c \
+	insertion_target.c \
+	insertion_cost.c \
+	find_cheapest.c \
+	insertion_move.c \
 
 OBJ = $(SRC:.c=.o)
 
