@@ -87,6 +87,9 @@ int		get_insert_cost(t_stack *a, t_stack *b, t_node *node);
 t_node	*find_cheapest(t_stack *a, t_stack *b);
 void	move_node(t_stack *a, t_stack *b, t_node *node);
 
+/* Radix sort */
+void	radix_sort(t_stack *a, t_stack *b);
+
 /* Common moves */
 void	push_to_b(t_stack *a, t_stack *b);
 void	push_to_a(t_stack *a, t_stack *b);
