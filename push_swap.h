@@ -87,6 +87,9 @@ int		get_insert_cost(t_stack *a, t_stack *b, t_node *node);
 t_node	*find_cheapest(t_stack *a, t_stack *b);
 void	move_node(t_stack *a, t_stack *b, t_node *node);
 
+/* Adaptive sort */
+void	adaptive_sort(t_stack *a, t_stack *b, double disorder);
+
 /* Radix sort */
 void	radix_sort(t_stack *a, t_stack *b);
 
