@@ -90,6 +90,9 @@ void	move_node(t_stack *a, t_stack *b, t_node *node);
 /* Adaptive sort */
 void	adaptive_sort(t_stack *a, t_stack *b, double disorder);
 
+/* Radix sort */
+void	radix_sort(t_stack *a, t_stack *b);
+
 /* Common moves */
 void	push_to_b(t_stack *a, t_stack *b);
 void	push_to_a(t_stack *a, t_stack *b);
