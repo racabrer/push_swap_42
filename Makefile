@@ -8,6 +8,13 @@ SRC = \
 	nodes.c \
 	nodes_utils.c \
 	little_numbers.c \
+	medium_alg.c \
+	indexes.c \
+	parser_flags.c \
+	parser_numbers.c \
+	ft_atol.c \
+	utils_parser_num.c \
+	split.c \
 	swap.c \
 	push.c \
 	rotate.c \
@@ -27,7 +34,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

@@ -8,6 +8,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <stdio.h>
+
 #define NONE        0
 #define SIMPLE      1
 #define MEDIUM      2
@@ -41,6 +43,7 @@ int		parse_numbers(char **argv, t_stack *a);
 int		is_number(char *str);
 int		is_int_range(long value);
 int		has_duplicates(t_stack *a);
+int		ft_sqrt(int n);
 
 /* Utils parser numbers */
 long	ft_atol(const char *str);
@@ -69,7 +72,9 @@ void	add_node(t_stack *stack, t_node *new_node);
 /* Nodes Utils */
 t_node	*find_min_node(t_stack *stack);
 t_node	*find_max_node(t_stack *stack);
-void	move_to_top(t_stack *stack, t_node *node);
+void	move_a_to_top(t_stack *b, t_node *node);
+void	move_b_to_top(t_stack *b, t_node *node);
+//void	move_to_top(t_stack *stack, t_node *node);
 int		get_position(t_stack *stack, t_node *node);
 
 /* Little Numbers */
@@ -77,6 +82,15 @@ void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
 void	sort_four(t_stack *a, t_stack *b);
 void	sort_five(t_stack *a, t_stack *b);
+
+/* Medium algotithm */
+
+int		get_chunk_size(int size);
+t_node	*find_chunk_node(t_stack *stack, int min, int max);
+void	process_chunk(t_stack *a, t_stack *b, int chunk_min, int chunk_max);
+void	push_back_to_a(t_stack *a, t_stack *b);
+void	sort_chunks(t_stack *a, t_stack *b);
+
 
 /* Indexes */
 void	assign_indexes(t_stack *stack);
@@ -86,29 +100,30 @@ int		get_index(t_stack *stack, t_node *node);
 void	free_stack(t_stack *stack);
 void	exit_error(t_stack *a, t_stack *b);
 void	error(void);
+int		is_sorted(t_stack *stack);
 
 /* Rotate */
-void	rotate(t_stack *stack);
+int		get_rotation_cost(t_stack *stack, t_node *node);
+int		rotate(t_stack *stack);
 void	ra(t_stack *stack);
 void	rb(t_stack *stack);
 void	rr(t_stack *a, t_stack *b);
 
-
 /* Reverse Rotate */
-void	reverse_rotate(t_stack *stack);
+int		reverse_rotate(t_stack *stack);
 void	rra(t_stack *stack);
 void	rrb(t_stack *stack);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 
 /* Swap */
-void	swap_node(t_stack *stack);
+int		swap_node(t_stack *stack);
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
 
 /* Push */
-void	push(t_stack *dest, t_stack *src);
+int		push(t_stack *dest, t_stack *src);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 

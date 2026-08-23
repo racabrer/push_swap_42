@@ -101,3 +101,14 @@ int has_duplicates(t_stack *a)
     return (0);
 }
 
+int    ft_sqrt(int n)
+{
+    int i;
+
+    if (n <= 0)
+        return (0);
+    i = 1;
+    while (i * i <= n)
+        i++;
+    return (i - 1);
+}

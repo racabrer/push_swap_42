@@ -1,11 +1,11 @@
 #include "push_swap.h"
 
-void	push(t_stack *dest, t_stack *src)
+int	push(t_stack *dest, t_stack *src)
 {
 	t_node	*moved_node;
 
 	if (!dest || !src || !src->top)
-		return ;
+		return (0);
 	moved_node = src->top;
 	src->top = moved_node->next;
 	if (src->top)
@@ -21,16 +21,17 @@ void	push(t_stack *dest, t_stack *src)
 	dest->top = moved_node;
 	src->size--;
 	dest->size++;
+	return (1);
 }
 
 void	pa(t_stack *a, t_stack *b)
 {
-	push(a, b);
-	write(1, "pa\n", 3);
+	if (push(a, b))
+		write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *a, t_stack *b)
 {
-	push(b, a);
-	write(1, "pb\n", 3);
+	if (push(b, a))
+		write(1, "pb\n", 3);
 }

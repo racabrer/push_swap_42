@@ -18,26 +18,105 @@ t_node	*find_min_node(t_stack *stack)
     return (min);
 }
 
-void	move_to_top(t_stack *stack, t_node *node)
+void move_a_to_top(t_stack *a, t_node *node)
 {
-    int position;
-    int half;
+    int pos;
 
-    if (stack == NULL || node == NULL || stack->top == NULL)
+    if (!a || !node || !a->top)
         return ;
-    position = get_position(stack, node);
-    half = stack->size / 2;
-    if (position <= half)
+    while (node != a->top)
     {
-        while (node != stack->top)
-            ra(stack);
-    }
-    else
-    {
-        while (node != stack->top)
-            rra(stack);
+        pos = get_position(a, node);
+        if (pos == -1)
+            break ;
+        if (pos <= a->size / 2)
+            ra(a);
+        else
+            rra(a);
     }
 }
+
+void	move_b_to_top(t_stack *b, t_node *node)
+{
+	int	position;
+
+	if (!b || !node || !b->top)
+		return ;
+	while (node != b->top)
+	{
+		position = get_position(b, node);
+		if (position == -1)
+			break ;
+		if (position <= b->size / 2)
+			rb(b);
+		else
+			rrb(b);
+	}
+}
+
+// void move_a_to_top(t_stack *a, t_node *node)
+// {
+//     int position;
+
+//     if (!a || !node || !a->top)
+//         return ;
+//     position = get_position(a, node);
+//     if (position == -1)
+//         return ;
+//     if (position <= a->size / 2)
+//     {
+//         while (node != a->top)
+//             ra(a);
+//     }
+//     else
+//     {
+//         while (node != a->top)
+//             rra(a);
+//     }
+// }
+
+// void move_b_to_top(t_stack *b, t_node *node)
+// {
+//     int position;
+
+//     if (!b || !node || !b->top)
+//         return ;
+//     position = get_position(b, node);
+//     if (position == -1)
+//         return ;
+//     if (position <= b->size / 2)
+//     {
+//         while (node != b->top)
+//             rb(b);
+//     }
+//     else
+//     {
+//         while (node != b->top)
+//             rrb(b);
+//     }
+// }
+
+//COMENTADA POR PRUEBA 
+// void	move_to_top(t_stack *stack, t_node *node)
+// {
+//     int position;
+//     int half;
+
+//     if (stack == NULL || node == NULL || stack->top == NULL)
+//         return ;
+//     position = get_position(stack, node);
+//     half = stack->size / 2;
+//     if (position <= half)
+//     {
+//         while (node != stack->top)
+//             ra(stack);
+//     }
+//     else
+//     {
+//         while (node != stack->top)
+//             rra(stack);
+//     }
+// }
 
 /*
 Lleva ese nodo hasta top.
@@ -45,23 +124,41 @@ Decide si usar ra o rra según la posición del nodo.
 Modifica la pila.
 */
 
+// t_node	*find_max_node(t_stack *stack)
+// {
+//     t_node  *compare;
+//     t_node  *max;
+
+//     if (stack == NULL || stack->top == NULL)
+//         return (NULL);
+//     max = stack->top;
+//     compare = stack->top->next;
+//     while (compare != NULL) 
+//     {
+//         if (compare->value > max->value)
+//             max = compare;
+//         compare = compare->next;
+//     }
+//     return (max);
+// }
 t_node	*find_max_node(t_stack *stack)
 {
-    t_node  *compare;
-    t_node  *max;
+	t_node	*compare;
+	t_node	*max;
 
-    if (stack == NULL || stack->top == NULL)
-        return (NULL);
-    max = stack->top;
-    compare = stack->top->next;
-    while (compare != NULL) 
-    {
-        if (compare->value > max->value)
-            max = compare;
-        compare = compare->next;
-    }
-    return (max);
+	if (stack == NULL || stack->top == NULL)
+		return (NULL);
+	max = stack->top;
+	compare = stack->top->next;
+	while (compare != NULL)
+	{
+		if (compare->index > max->index)
+			max = compare;
+		compare = compare->next;
+	}
+	return (max);
 }
+
 
 int	get_position(t_stack *stack, t_node *node)
 {

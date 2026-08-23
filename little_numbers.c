@@ -50,7 +50,7 @@ static void	push_smallest_to_b(t_stack *a, t_stack *b)
     if (!a ||  a->top == NULL || !b )
         return ;
     min = find_min_node(a);
-    move_to_top(a, min);
+    move_a_to_top(a, min);
     pb(a, b);
 }
 

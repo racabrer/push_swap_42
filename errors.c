@@ -32,3 +32,17 @@ void    error(void) //Añado esto para que devuelva error
     write(2, "Error\n", 6);
     exit(EXIT_FAILURE);
 }
+
+int	is_sorted(t_stack *stack)
+{
+	t_node	*current;
+
+	current = stack->top;
+	while (current && current->next)
+	{
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
