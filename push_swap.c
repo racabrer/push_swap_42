@@ -28,22 +28,6 @@ static int	has_blank_arg(int argc, char **argv, int first)
 	return (0);
 }
 
-static int	is_sorted(t_stack *a)
-{
-	t_node	*node;
-
-	if (!a || a->size <= 1)
-		return (1);
-	node = a->top;
-	while (node->next)
-	{
-		if (node->value > node->next->value)
-			return (0);
-		node = node->next;
-	}
-	return (1);
-}
-
 static void	sort_stack(t_stack *a, t_stack *b, int strategy)
 {
 	if (is_sorted(a))

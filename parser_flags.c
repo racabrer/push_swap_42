@@ -53,5 +53,4 @@ int	parse_flags(int argc, char **argv, int *strategy, int *bench)
 		i++;
 	}
 	return (i);
-}  
- 
+}

@@ -1,0 +1,125 @@
+Se basa en indexar los números y pasarlos del Stack A al Stack B utilizando
+una "ventana deslizante".
+Al mover los elementos siguiendo esa ventana y decidiendo si rotar o no el
+Stack B, el Stack B termina parcialmente ordenado con una forma gráfica de "mariposa".
+
+1-. Paso precio -> INDEXACIÓN   
+    Sustituyo los valores originales por su posición si estuvieran ordenados.
+
+2. Fase 1. Pasar de A a B(Crear la "Mariposa").
+    Comienzo con un contador global i (que empieza en 0)y una variable dija llamada offset.
+
+- Recorro el Stack A elemento comprobando el valor del tope:
+
+    1. Si el elemento en el top de a es <= a i.
+        -> Lo paso a B (pb).
+        -> Roto B (rb): Envío los elementos muy pequeños al fondo del Stack b
+        -> Incremento i en 1.
+    2. Si el elemento en el top de A es <= i + offset:
+        -> Lo paso a B (pb).
+        -> No roto B(se queda en la parte superior del StackB).
+        -> Incremento i en 1.
+    3. Si el elemento en el top de A es >= i + offset:
+        -> Roto A (ra) para enviar este elemento al fondo de A y buscar uno que sí 
+            entre en la ventana actual.
+    **Explicación de porqué funciona este filtrado**
+
+    Con la primera condición mando los elementos más pequeñis al fondo de B(pb + rb)
+    y con la segunda dejo los elementos intermedios en la superficie de B()pb.
+    Esto va acumulando los datos de forma simétirica alrededor del centro, formando 
+    una estructura de mariposa.
+
+3. Fase 2: Devolver de B a A (Ordenación final)
+
+Una vez que el Stack A queda totalmente vacío, el Stack B contiene todos los números 
+agrupados en un orden aproximado muy favorable.
+
+* En este punto, el objetivo es simplemente devolver el elemento más grande de A
+
+
+ESTRUCTURAAAAAAAAA POSIBLE
+get_chunk_size()
+
+↓
+
+sort_butterfly()
+
+↓
+
+push_to_butterfly()
+
+↓
+
+push_back_to_a()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Normalizo los números → índices.
+
+2. Calculo cuántos elementos tendrá cada chunk.
+
+3. Defino el primer rango:
+   
+   mínimo = 0
+   máximo = chunk_size - 1
+
+4. Mientras queden elementos de ese rango en A:
+
+       busco un elemento cuyo índice
+       esté entre mínimo y máximo
+
+       lo llevo al top:
+           ra o rra
+
+       pb
+
+5. Cuando ya no quedan elementos de ese rango:
+
+       mínimo += chunk_size
+       máximo += chunk_size
+
+6. Repito hasta vaciar A.
+
+7. Cuando A está vacía:
+
+       busco el máximo de B
+       lo llevo al top
+       pa
+
+       repito hasta vaciar B.
+
+
+
+
+
+VOY A CAMBIAR TEMPORALMENTE MOVE TO TOP
+AHORA VOY A CAMBIAR push_back_to_a TEMPORALMENTE
+
+vale ahora voy a cambiar rrb y movebtotop 

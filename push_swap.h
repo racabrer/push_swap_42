@@ -8,11 +8,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define NONE        0
-#define SIMPLE      1
-#define MEDIUM      2
-#define COMPLEX     3
-#define ADAPTIVE    4
+#define NONE 0
+#define SIMPLE 1
+#define MEDIUM 2
+#define COMPLEX 3
+#define ADAPTIVE 4
 
 typedef struct s_node
 {
@@ -35,11 +35,11 @@ int		set_strategy(char *flag, int *strategy);
 int		parse_flags(int argc, char **argv, int *strategy, int *bench);
 
 /* Parser numbers */
-//int		parse_numbers(int argc, char **argv, int first_number, t_stack *a);
 int		parse_numbers(char **argv, t_stack *a);
 int		is_number(char *str);
 int		is_int_range(long value);
 int		has_duplicates(t_stack *a);
+int		ft_sqrt(int n);
 
 /* Utils parser numbers */
 long	ft_atol(const char *str);
@@ -56,13 +56,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strdup(const char *s);
 
 /* Disorder */
-double compute_disorder(t_stack *stack);
+double	compute_disorder(t_stack *stack);
 
 /* Libft-utils */
 size_t	ft_strlen(const char *s);
 
 /* Split */
-char		**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c);
 
 /* Nodes */
 t_node	*create_node(int value);
@@ -72,6 +72,8 @@ void	add_node(t_stack *stack, t_node *new_node);
 t_node	*find_min_node(t_stack *stack);
 t_node	*find_max_node(t_stack *stack);
 void	move_to_top(t_stack *stack, t_node *node);
+void	move_a_to_top(t_stack *a, t_node *node);
+void	move_b_to_top(t_stack *b, t_node *node);
 int		get_position(t_stack *stack, t_node *node);
 int		get_reverse_position(t_stack *stack, t_node *node);
 
@@ -97,6 +99,13 @@ void	radix_sort(t_stack *a, t_stack *b);
 /* Medium sort */
 void	medium_sort(t_stack *a, t_stack *b);
 
+/* Medium algorithm (chunks) */
+int		get_chunk_size(int size);
+t_node	*find_chunk_node(t_stack *stack, int min, int max);
+void	process_chunk(t_stack *a, t_stack *b, int chunk_min, int chunk_max);
+void	push_back_to_a(t_stack *a, t_stack *b);
+void	sort_chunks(t_stack *a, t_stack *b);
+
 /* Common moves */
 void	push_to_b(t_stack *a, t_stack *b);
 void	push_to_a(t_stack *a, t_stack *b);
@@ -113,29 +122,29 @@ int		get_index(t_stack *stack, t_node *node);
 void	free_stack(t_stack *stack);
 void	exit_error(t_stack *a, t_stack *b);
 void	error(void);
+int		is_sorted(t_stack *stack);
 
 /* Rotate */
-void	rotate(t_stack *stack);
+int		get_rotation_cost(t_stack *stack, t_node *node);
+int		rotate(t_stack *stack);
 void	ra(t_stack *stack);
 void	rb(t_stack *stack);
 void	rr(t_stack *a, t_stack *b);
 
-
 /* Reverse Rotate */
-void	reverse_rotate(t_stack *stack);
+int		reverse_rotate(t_stack *stack);
 void	rra(t_stack *stack);
 void	rrb(t_stack *stack);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
-
 /* Swap */
-void	swap_node(t_stack *stack);
+int		swap_node(t_stack *stack);
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
 
 /* Push */
-void	push(t_stack *dest, t_stack *src);
+int		push(t_stack *dest, t_stack *src);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 

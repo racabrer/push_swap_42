@@ -8,6 +8,13 @@ SRC = \
 	nodes.c \
 	nodes_utils.c \
 	little_numbers.c \
+	medium_alg.c \
+	indexes.c \
+	parser_flags.c \
+	parser_numbers.c \
+	ft_atol.c \
+	utils_parser_num.c \
+	split.c \
 	swap.c \
 	push.c \
 	rotate.c \
@@ -24,13 +31,7 @@ SRC = \
 	insertion_move.c \
 	medium_sort.c \
 	radix_sort.c \
-	adaptive_sort.c \
-	indexes.c \
-	parser_flags.c \
-	parser_numbers.c \
-	utils_parser_num.c \
-	ft_atol.c \
-	split.c \
+	adaptive_sort.c
 
 OBJ = $(SRC:.c=.o)
 
