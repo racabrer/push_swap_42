@@ -73,6 +73,7 @@ t_node	*find_min_node(t_stack *stack);
 t_node	*find_max_node(t_stack *stack);
 void	move_to_top(t_stack *stack, t_node *node);
 int		get_position(t_stack *stack, t_node *node);
+int		get_reverse_position(t_stack *stack, t_node *node);
 
 /* Little Numbers */
 void	sort_two(t_stack *a);
@@ -92,6 +93,9 @@ void	adaptive_sort(t_stack *a, t_stack *b, double disorder);
 
 /* Radix sort */
 void	radix_sort(t_stack *a, t_stack *b);
+
+/* Medium sort */
+void	medium_sort(t_stack *a, t_stack *b);
 
 /* Common moves */
 void	push_to_b(t_stack *a, t_stack *b);

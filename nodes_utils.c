@@ -92,7 +92,7 @@ int	get_reverse_position(t_stack *stack, t_node *node)
 	int	position;
 
 	position = get_position(stack, node);
-	if (position < 0)
-		return (-1);
+	if (position <= 0)
+		return (position);
 	return (stack->size - position);
 }

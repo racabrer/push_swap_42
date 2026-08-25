@@ -1,4 +1,4 @@
-NAME = test
+NAME = push_swap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -22,6 +22,15 @@ SRC = \
 	insertion_cost.c \
 	find_cheapest.c \
 	insertion_move.c \
+	medium_sort.c \
+	radix_sort.c \
+	adaptive_sort.c \
+	indexes.c \
+	parser_flags.c \
+	parser_numbers.c \
+	utils_parser_num.c \
+	ft_atol.c \
+	split.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -34,7 +43,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
