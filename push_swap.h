@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raqcabre <raqcabre@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 15:59:02 by raqcabre          #+#    #+#             */
+/*   Updated: 2026/08/27 15:10:12 by ldiaz-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -22,11 +34,27 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
+typedef struct s_stats
+{
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_stats;
+
 typedef struct s_stack
 {
 	t_node	*top;
 	t_node	*bottom;
 	int		size;
+	t_stats	*stats;
 }	t_stack;
 
 /* Parser flags */
@@ -67,6 +95,7 @@ char	**ft_split(char const *s, char c);
 /* Nodes */
 t_node	*create_node(int value);
 void	add_node(t_stack *stack, t_node *new_node);
+void	init_stacks(t_stack *a, t_stack *b, t_stats *stats);
 
 /* Nodes Utils */
 t_node	*find_min_node(t_stack *stack);
@@ -145,5 +174,13 @@ void	ss(t_stack *a, t_stack *b);
 int		push(t_stack *dest, t_stack *src);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
+
+/* Bench */
+void	print_bench(t_stack *a, int strategy, double disorder);
+
+/* Bench utils */
+void	write_uint(int fd, unsigned int n);
+void	write_percent(int fd, double disorder);
+void	write_field(int fd, const char *label, int count, int is_last);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raqcabre <raqcabre@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 15:59:02 by raqcabre          #+#    #+#             */
+/*   Updated: 2026/08/25 21:21:03 by ldiaz-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	is_blank(char *str)
@@ -28,7 +40,7 @@ static int	has_blank_arg(int argc, char **argv, int first)
 	return (0);
 }
 
-static void	sort_stack(t_stack *a, t_stack *b, int strategy)
+static void	sort_stack(t_stack *a, t_stack *b, int strategy, double disorder)
 {
 	if (is_sorted(a))
 		return ;
@@ -46,18 +58,31 @@ static void	sort_stack(t_stack *a, t_stack *b, int strategy)
 		if (strategy == SIMPLE)
 			insertion_sort(a, b);
 		else if (strategy == MEDIUM)
-			medium_sort(a, b);
+			sort_chunks(a, b);
 		else if (strategy == COMPLEX)
 			radix_sort(a, b);
 		else
-			adaptive_sort(a, b, compute_disorder(a));
+			adaptive_sort(a, b, disorder);
 	}
+}
+
+static void	run_and_report(t_stack *a, t_stack *b, int strategy, int bench)
+{
+	double	disorder;
+
+	if (strategy == NONE)
+		strategy = ADAPTIVE;
+	disorder = compute_disorder(a);
+	sort_stack(a, b, strategy, disorder);
+	if (bench)
+		print_bench(a, strategy, disorder);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
+	t_stats	stats;
 	int		strategy;
 	int		bench;
 	int		first;
@@ -77,17 +102,14 @@ int	main(int argc, char **argv)
 	numbers = normalize_args(argc, argv, first);
 	if (!numbers)
 		error();
-	a = (t_stack){NULL, NULL, 0};
-	b = (t_stack){NULL, NULL, 0};
+	init_stacks(&a, &b, &stats);
 	if (!parse_numbers(numbers, &a))
 	{
 		free_split(numbers);
 		exit_error(&a, &b);
 	}
 	free_split(numbers);
-	if (strategy == NONE)
-		strategy = ADAPTIVE;
-	sort_stack(&a, &b, strategy);
+	run_and_report(&a, &b, strategy, bench);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

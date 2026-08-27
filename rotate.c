@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raqcabre <raqcabre@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/08 15:59:02 by raqcabre          #+#    #+#             */
+/*   Updated: 2026/08/25 16:49:02 by raqcabre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	get_rotation_cost(t_stack *stack, t_node *node)
@@ -35,13 +47,19 @@ int	rotate(t_stack *stack)
 void	ra(t_stack *stack)
 {
 	if (rotate(stack))
+	{
 		write(1, "ra\n", 3);
+		stack->stats->ra++;
+	}
 }
 
 void	rb(t_stack *stack)
 {
 	if (rotate(stack))
+	{
 		write(1, "rb\n", 3);
+		stack->stats->rb++;
+	}
 }
 
 void	rr(t_stack *a, t_stack *b)
@@ -51,4 +69,5 @@ void	rr(t_stack *a, t_stack *b)
 	rotate(a);
 	rotate(b);
 	write(1, "rr\n", 3);
+	a->stats->rr++;
 }

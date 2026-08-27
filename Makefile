@@ -29,9 +29,10 @@ SRC = \
 	insertion_cost.c \
 	find_cheapest.c \
 	insertion_move.c \
-	medium_sort.c \
 	radix_sort.c \
-	adaptive_sort.c
+	adaptive_sort.c \
+	bench.c \
+	bench_utils.c
 
 OBJ = $(SRC:.c=.o)
 
