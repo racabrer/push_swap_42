@@ -7,16 +7,6 @@ static int	max_value(int a, int b)
 	return (b);
 }
 
-static int	get_forward_cost(int a, int b)
-{
-	return (max_value(a, b));
-}
-
-static int	get_reverse_cost(int a, int b)
-{
-	return (max_value(a, b));
-}
-
 static int	get_separate_cost(int a, int b)
 {
 	return (a + b);
@@ -32,12 +22,12 @@ int	get_insert_cost(t_stack *a, t_stack *b, t_node *node)
 	pos_a = get_position(a, target);
 	pos_b = get_position(b, node);
 	if (pos_a <= a->size / 2 && pos_b <= b->size / 2)
-		return (get_forward_cost(pos_a, pos_b) + 1);
+		return (max_value(pos_a, pos_b) + 1);
 	if (pos_a > a->size / 2 && pos_b > b->size / 2)
 	{
 		pos_a = get_reverse_position(a, target);
 		pos_b = get_reverse_position(b, node);
-		return (get_reverse_cost(pos_a, pos_b) + 1);
+		return (max_value(pos_a, pos_b) + 1);
 	}
 	if (pos_a <= a->size / 2)
 		return (get_separate_cost(pos_a,

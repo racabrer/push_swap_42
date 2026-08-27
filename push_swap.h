@@ -96,8 +96,6 @@ void	adaptive_sort(t_stack *a, t_stack *b, double disorder);
 /* Radix sort */
 void	radix_sort(t_stack *a, t_stack *b);
 
-/* Medium sort */
-void	medium_sort(t_stack *a, t_stack *b);
 
 /* Medium algorithm (chunks) */
 int		get_chunk_size(int size);
