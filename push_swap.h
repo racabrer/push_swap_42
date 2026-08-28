@@ -183,4 +183,7 @@ void	write_uint(int fd, unsigned int n);
 void	write_percent(int fd, double disorder);
 void	write_field(int fd, const char *label, int count, int is_last);
 
+/* Report */
+void	report_op(int *counter, const char *name);
+
 #endif

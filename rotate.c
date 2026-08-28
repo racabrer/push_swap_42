@@ -47,19 +47,13 @@ int	rotate(t_stack *stack)
 void	ra(t_stack *stack)
 {
 	if (rotate(stack))
-	{
-		write(1, "ra\n", 3);
-		stack->stats->ra++;
-	}
+		report_op(&stack->stats->ra, "ra\n");
 }
 
 void	rb(t_stack *stack)
 {
 	if (rotate(stack))
-	{
-		write(1, "rb\n", 3);
-		stack->stats->rb++;
-	}
+		report_op(&stack->stats->rb, "rb\n");
 }
 
 void	rr(t_stack *a, t_stack *b)
@@ -68,6 +62,5 @@ void	rr(t_stack *a, t_stack *b)
 		return ;
 	rotate(a);
 	rotate(b);
-	write(1, "rr\n", 3);
-	a->stats->rr++;
+	report_op(&a->stats->rr, "rr\n");
 }

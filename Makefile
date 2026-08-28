@@ -32,7 +32,8 @@ SRC = \
 	radix_sort.c \
 	adaptive_sort.c \
 	bench.c \
-	bench_utils.c
+	bench_utils.c \
+	report.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -36,19 +36,13 @@ int	swap_node(t_stack *stack)
 void	sa(t_stack *a)
 {
 	if (swap_node(a))
-	{
-		write(1, "sa\n", 3);
-		a->stats->sa++;
-	}
+		report_op(&a->stats->sa, "sa\n");
 }
 
 void	sb(t_stack *b)
 {
 	if (swap_node(b))
-	{
-		write(1, "sb\n", 3);
-		b->stats->sb++;
-	}
+		report_op(&b->stats->sb, "sb\n");
 }
 
 void	ss(t_stack *a, t_stack *b)
@@ -59,6 +53,5 @@ void	ss(t_stack *a, t_stack *b)
 		return ;
 	swap_node(a);
 	swap_node(b);
-	write(1, "ss\n", 3);
-	a->stats->ss++;
+	report_op(&a->stats->ss, "ss\n");
 }

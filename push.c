@@ -39,17 +39,11 @@ int	push(t_stack *dest, t_stack *src)
 void	pa(t_stack *a, t_stack *b)
 {
 	if (push(a, b))
-	{
-		write(1, "pa\n", 3);
-		a->stats->pa++;
-	}
+		report_op(&a->stats->pa, "pa\n");
 }
 
 void	pb(t_stack *a, t_stack *b)
 {
 	if (push(b, a))
-	{
-		write(1, "pb\n", 3);
-		a->stats->pb++;
-	}
+		report_op(&a->stats->pb, "pb\n");
 }

@@ -33,19 +33,13 @@ int	reverse_rotate(t_stack *stack)
 void	rra(t_stack *stack)
 {
 	if (reverse_rotate(stack))
-	{
-		write(1, "rra\n", 4);
-		stack->stats->rra++;
-	}
+		report_op(&stack->stats->rra, "rra\n");
 }
 
 void	rrb(t_stack *stack)
 {
 	if (reverse_rotate(stack))
-	{
-		write(1, "rrb\n", 4);
-		stack->stats->rrb++;
-	}
+		report_op(&stack->stats->rrb, "rrb\n");
 }
 
 void	rrr(t_stack *stack_a, t_stack *stack_b)
@@ -56,6 +50,5 @@ void	rrr(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
-	write(1, "rrr\n", 4);
-	stack_a->stats->rrr++;
+	report_op(&stack_a->stats->rrr, "rrr\n");
 }
