@@ -221,8 +221,8 @@ capaces de explicar su funcionamiento durante la evaluación.
 
 | Login | Contribución principal |
 |---|---|
-| `raqcabre` | Parseo de argumentos y errores, estructuras de datos (nodos/stacks), operaciones básicas (`sa`/`sb`/`ss`/`pa`/`pb`/`ra`/`rb`/`rr`/`rra`/`rrb`/`rrr`), casos pequeños (n ≤ 5) |
-| `ldiaz-de` | Cálculo del índice de desorden, algoritmo simple (insertion sort), algoritmo intermedio (chunks), algoritmo complejo (radix sort), algoritmo adaptativo, modo benchmark |
+| `raqcabre` | Parseo de argumentos y errores, estructuras de datos (nodos/stacks), operaciones básicas (`sa`/`sb`/`ss`/`pa`/`pb`/`ra`/`rb`/`rr`/`rra`/`rrb`/`rrr`), casos pequeños (n ≤ 5), algoritmo intermedio (ordenación por chunks) |
+| `ldiaz-de` | Cálculo del índice de desorden, algoritmo simple (insertion sort), algoritmo complejo (radix sort), algoritmo adaptativo, modo benchmark |
 
 Ambas personas han revisado el trabajo de la otra y son capaces de explicar
 cualquier parte del código durante la evaluación.
