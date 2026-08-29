@@ -2,8 +2,6 @@
 
 # push_swap
 
-Porque Swap_push no suena tan natural.
-
 ## Descripción
 
 `push_swap` es un proyecto de algoritmia clásico de 42: ordenar una lista de
